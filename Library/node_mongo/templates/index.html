@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Internet</title>
+	<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+	<style>
+	input{
+		
+		width: 245px;
+	
+	}
+
+	button{
+	
+		width: 187.5px;
+	
+	}
+	
+	</style>
+</head>
+<body>
+	<h1>Form CRUD</h1>
+	<input type="text" id="userID" placeholder="User ID: For Update/Delete Only"/>
+	<input type="text" id="userName" placeholder="User Name"/>
+	<input type="text" id="userBio" placeholder="User Bio"/><br><br>
+	<button id="postBtn" onclick="PostInfo()">Post Information</button>
+	<button id="getBtn" onclick="GetInfo()">Get Information</button>
+	<button id="putBtn" onclick="PutInfo()">Update Information</button>
+	<button id="deleteBtn" onclick="DeleteInfo()">Delete User</button>
+	<hr>
+	<div id='infoBox'></div>
+	<script>
+
+		var infoBox = $('#infoBox');
+
+		function MakePerty(data){
+
+			var contents = '';
+
+			for(var i = 0; i < data.length; i++){
+
+				contents += '<h2>Book Title: ' + data[i].name + '</h2><br>';
+				contents += '<h2>Book Description: ' + data[i].bio + '</h2><hr>';
+
+
+			}
+
+			return contents;
+
+		}
+
+		function GetInfo(){
+
+			$.get('/batman', function(data){
+
+
+
+				infoBox.html(MakePerty(data.success));
+
+			});
+
+		}
+
+		function PostInfo(){
+
+			if ($('#userName').val() != '' && $('#userBio').val() != ''){
+				$.post('/batman', {
+
+					name: $("#userName").val(),
+					bio: $('#userBio').val()
+	
+				}, function(data){
+
+					console.log(data);
+					infoBox.html(MakePerty(data.success));
+				});
+	
+			} else {
+
+				alert('Please complete the required forms.');
+
+			}
+
+		}
+
+		function PutInfo(){
+			
+			if ($('#userName').val() != '' && $('#userBio').val() != ''){
+							
+			$.post('/single', {
+
+								name: $("#userName").val(),
+								bio: $('#userBio').val()
+				
+							}, function(data){
+
+								console.log(data);
+								infoBox.html(MakePerty(data.success));
+							});
+				
+						} else {
+
+							alert('Please complete the required forms.');
+
+						}
+
+					}
+
+
+		function DeleteInfo(){
+
+			if ($('#userID').val() != ''){
+				
+				$.ajax({
+
+					url: '/blueknights',
+					type: 'DELETE',
+					data:{
+					id: $('#userID').val(),
+					},
+					success: function(data){
+
+						infoBox.html(MakePerty(data.success));
+
+					}
+	
+				});
+	
+			} else {
+
+				alert('Please complete the required forms.');
+
+			}
+
+		}
+
+
+	</script>
+</body>
+</html>

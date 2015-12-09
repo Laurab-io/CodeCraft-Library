@@ -1,0 +1,956 @@
+<!DOCTYPE html >
+<html class="full">
+
+<head>
+
+    <title>CodeCraft Library</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="/images/animate.css" />
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+
+    <style>
+        body {
+            background: url("/images/library.jpg") no-repeat center center fixed;
+            background-size: cover;
+        }
+        
+        .noButton {
+            background-color: rgba(250, 250, 250, .0);
+            border: none;
+            color: white;
+        }
+        
+        #mainBox {
+            background-color: rgba(0, 0, 0, .7);
+            padding: 20px;
+            margin: 25px;
+            margin-top: 75px;
+        }
+        
+        .head {
+            padding: 20px;
+            color: white;
+        }
+        /***********************************************************************
+*  OPAQUE NAVBAR SECTION
+***********************************************************************/
+        
+        .opaque-navbar {
+            background-color: rgba(0, 0, 0, .7);
+            /* Transparent = rgba(0,0,0,0) / Translucent = (0,0,0,0.5)  */
+            height: 60px;
+            border-bottom: 0px;
+            transition: background-color .5s ease 0s;
+        }
+        
+        ul.dropdown-menu {
+            background-color: black;
+            color: white;
+        }
+        
+        .form-control {
+            margin: 5px;
+            font-style: italic;
+            background-color: black;
+        }
+        /* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+        /* Carousel base class */
+        
+        .carousel {
+            height: 250px;
+            margin-bottom: 0px;
+        }
+        /* Since positioning the image, we need to help out the caption */
+        
+        .carousel-caption {
+            z-index: 10;
+            font-style: italic;
+            text-align: left;
+            top: 0px;
+        }
+        /* Declare heights because of positioning of img element */
+        
+        .carousel .item {
+            height: 250px;
+            top: 0px
+        }
+        
+        body {
+            color: white;
+            font-family: Raleway;
+        }
+    </style>
+
+</head>
+
+<body style="width:100%; heigth:150%; background-color: rgba(0, 0, 0, .5;">
+    <nav class="navbar navbar-inverse navbar-fixed-top opaque-navbar">
+        <div class=" container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" onclick="Mobile();">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">
+                            <button class="noButton" onclick="SignInDisplay()">Sign In</button><span class="sr-only"></a></li>
+<li><a href="#"><button class = "noButton" onclick="GetInfo('browse')">Browse</button></a></li>
+<li class="dropdown">
+<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#">
+                                    <button class="noButton" onclick="ComputerScienceDisplay('computerscience')">Computer Science</button>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <button class="noButton" onclick="Program mingDisplay('programming')">Programming</button>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <button class="noButton" onclick="DesignDisplay('design')">Design</button>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#">
+                            <button class="noButton" onclick="MyAccountDisplay()">My Account</button>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <button class="noButton" onclick="AdministratorDisplay()">Add A Book</button>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+    </nav>
+    <div id="mobmen" style="display: none;">
+        <div class="col-xs-12  text-center " style="background-color: rgba(10, 10, 10,.8);margin-top: 90px; ">
+
+            <button class="btn-block btn btn-info" style="background-color: rgb(25, 18, 36); margin-bottom: 7px;" onclick="SignInDisplay()">Sign In</button>
+            <button class="btn-block btn btn-info" style="background-color: rgb(25, 18, 36); margin-bottom: 7px;" onclick="BackToBrowse()">Browse</button>
+            <button class="btn-block btn btn-info" style="background-color: rgb(25, 18, 36); margin-bottom: 7px;" onclick="MyAccountDisplay()">My Account</button>
+            <button class="btn-block btn btn-info" style="background-color: rgb(25, 18, 36); margin-bottom: 7px;" onclick="AdministratorDisplay()">Add A Book</button>
+
+        </div>
+    </div>
+
+
+
+    <div class="row fadeIn animated">
+
+        <div class="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1 text-center">
+            <br/>
+            <br/>
+            <br/>
+            <div id="loggedInName" style=" margin-left: 7px; color: rgba(250,250,250, .65); background-color: rgba(0, 0, 0, .8) ">
+                <h4>Please Sign In</h4><img class="img-responsive" src="/images/logo.png" style="background-color: rgba(255, 255, 255, .7); margin: 0 auto; border-radius: 40px"></div>
+        </div>
+
+
+
+
+
+        <div id="mainBox" class="col-md-9 col-xs-10 col-xs-offset-1">
+
+            <!-- Carousel
+
+    ================================================== -->
+            <div id="myCarousel" class="carousel slide fadeIn animated" data-ride="carousel">
+                <!-- Indicators -->
+
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <div class="container">
+                            <div class="carousel-caption">
+                                <h3>If we encounter a man of rare intellect, we should ask him what books he reads.<br/>-Ralph Waldo Emerson.</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="container">
+                            <div class="carousel-caption">
+                                <h3>If you only read the books that everyone else is reading, you can only think what everyone else is thinking.<br/>–Haruki Murakami</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="container">
+                            <div class="carousel-caption">
+                                <h3>A book is a dream that you hold in your hand.<br/>–Neil Gaiman</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.carousel -->
+        </div>
+    </div>
+
+    </div>
+    <script>
+        var infoBox = $("#infoBox");
+        var bookBag = [];
+        var bookAgain = [];
+        var menu = false;
+        var bookDataName;
+        var bookDataID;
+        var booksGo = [];
+        var user = {
+            name: ''
+        };
+        var bookDataName2 = '';
+        var bookDataID2 = '';
+
+
+        function Mobile() {
+
+            menu = !menu;
+            console.log(menu);
+
+            if (menu) {
+                $('#mobmen').css('display', 'block');
+
+            }
+            else {
+                $('#mobmen').css('display', 'none');
+            }
+        }
+
+
+        var availableBooks = [{
+            name: "Computer Science 101",
+            description: "",
+            category: "Computer Science",
+            status: "available",
+            link: "",
+            checkedOutBy: "",
+            owner: ""
+        }, {
+            name: "Programming for Idiots",
+            description: "",
+            category: "Programming",
+            status: "available",
+            link: "",
+            checkedOutBy: "",
+            owner: ""
+        }, {
+            name: "Design 101",
+            description: "",
+            category: "Design",
+            status: "available",
+            link: "",
+            checkedOutBy: "",
+            owner: ""
+        }];
+
+        var signInData = '<div class=" head img-rounded animated zoomIn"><h1>Welcome to the CodeCraft Library.</br> Please Sign in or create an account to checkout books.</h1><hr/><h3>Sign In</h3><div class="form-group" style=" width: 100%"><input class="form-control" type ="text" id="userName" placeholder ="Name"/><input class="form-control" type ="password" id="userBio" placeholder ="Password"/><br/><hr/><span id="thanks"></span><br><button class ="btn btn-info" id="getBTN" onclick="Login()" style="margin-right:10px; background-color: rgb(25, 18, 36)">Sign In</button><button class = "btn btn-info" id="postBtn" onclick="PostInfo()" style =" background-color: rgb(25, 18, 36);">Create Account</button></div></div>';
+
+
+        function SignInDisplay() {
+            $("#mainBox").html(signInData);
+            menu = false;
+            $('#menuStuff').html('');
+        }
+
+        var adminData = '<div id="addBook" class="head img-rounded animated zoomIn"><h1>Add Books to the Library</h1><hr><br><div class="form-group"><input class="form-control" type ="text" id="bookName" placeholder ="Book Name"/><input class="form-control" type ="text" id="description" placeholder ="Description"/><div class="form-group" style="margin-bottom: 0px"><select class="form-control" id="category" style="margin-bottom: 0px"><option>Select Category</option><option>Computer Science</option><option>Programming</option><option>Design</option></select></div><div class="form-group"><select class="form-control" id="owner"><option>Select Owner</option><option>Erty Seideol</option><option>CodeCraft</option></select></div><br/><span id="party"></span><hr><br/><button class ="btn btn-info btn-block" id="CreateBook" onclick="CreateBook()" style =" background-color: rgb(25, 18, 36);">Add Book</button></div></div>'
+
+        var codeCraftData = '<div id="myCarousel" class="carousel slide" data-ride="carousel"><div class="carousel-inner" role="listbox"><div class="item active"><div class="container"><div class="carousel-caption"><h3>If we encounter a man of rare intellect, we should ask him what books he reads.<br/>-Ralph Waldo Emerson.</h3></div></div></div><div class="item"><div class="container"><div class="carousel-caption"><h3>If you only read the books that everyone else is reading, you can only think what everyone else is thinking.<br/>–Haruki Murakami</h3></div></div></div><div class="item"><div class="container"><div class="carousel-caption"><h3>A book is a dream that you hold in your hand.<br/>–Neil Gaiman</h3></div></div></div></div></div>';
+
+
+        function AdministratorDisplay() {
+
+            menu = false;
+            $('#menuStuff').html('');
+
+            if (user.logged == 'in') {
+
+
+                $("#mainBox").html(adminData);
+
+
+            }
+            else {
+
+                $('#mainBox').html('<h1>Please Sign In or Create an Account.');
+
+            }
+        }
+
+        function CodeCraftDisplay() {
+            $("#mainBox").html(codeCraftData);
+        }
+
+
+
+        function BrowseDisplay() {
+            menu = false;
+            $('#menuStuff').html('');
+            var abname = "";
+            console.log(availableBooks);
+
+
+            for (var i = 0; i < availableBooks.length; i++) {
+
+
+                abname += '<div class="animated zoomIn"><h1 class = "booksIn">' + availableBooks[i].name + "</h1>";
+                abname += '<p>Description: ' + availableBooks[i].description + '</p>';
+
+                if (availableBooks[i].status == 'Checked Out') {
+
+                    abname += '<p>This book is currently checked out, and is due back by: </p><h3 style=" color: #1aff66">' + availableBooks[i].dueDate + '</h3><hr>';
+
+
+                }
+                else {
+
+
+                    abname += '<span id="' + availableBooks[i].id + '"><button style="background-color: rgb(25, 18, 36);" class ="btn btn-info" onclick="BookCheck(this)" data-name="' + availableBooks[i].name + '" data-id="' + availableBooks[i].id + '">Checkout Book</button></span><hr></div>';
+
+                }
+                abname += '</div>'
+                $("#mainBox").html(abname);
+            }
+        };
+
+        function CreateBook() {
+
+            var there = true;
+
+            var name = $("#bookName").val();
+
+            var bio = $("#description").val();
+
+            if (name == '') {
+
+                $('#party').html('<h3 style="color:red">Please fill out all fields.</h3>');
+
+
+            }
+            else {
+
+                $.get('/batman', function (data) {
+
+                    for (var i = 0; i < data.success.length; i++) {
+
+                        console.log(data.success[i].name);
+
+                        if ($("#bookName").val() == data.success[i].name) {
+
+                            $('#party').html('<h3 style="color:red">Book already exists.</h3>');
+                            there = false;
+
+                        }
+                    }
+
+                    if (there) {
+
+                        var book = {};
+                        book.name = name;
+                        book.description = bio;
+                        book.category = $("#category").val();
+                        book.link = $("#link").val();
+                        book.owner = $("#owner").val();
+
+                        AddBookDB(book);
+
+
+
+                        $('#party').html('<h3 style="color:green">Book added to library</h3>');
+
+
+                    }
+
+
+
+
+                });
+
+            }
+
+        }
+
+        function AddBookDB(book) {
+
+            $.post('/batman2', book, function (data) {
+
+
+
+            });
+
+            $("#bookName").val('');
+            $("#description").val('');
+            $('#category').val('Select Category');
+            $('#owner').val('Select Owner');
+
+        }
+
+        function BookCheck(book) {
+
+            var box = book.getAttribute('data-id');
+
+            document.getElementById(box).innerHTML = '<h3>Please confirm your password to checkout this book.</h3><div class="row"><div class="col-md-1 col-xs-4"><input style=" color: black; margin-top: 4px; border: none;" type="password" id="checker" /></div><div class="col-md-4 col-xs-4 col-xs-offset-1 col-md-offset-1"><button style="background-color: rgb(25, 18, 36);" type="button" class="btn btn-success btn-block" onclick="AddBook()">Submit</ button></div></div>';
+            bookDataName = book.getAttribute('data-name');
+            bookDataID = book.getAttribute('data-id');
+
+        }
+
+        function BackToBrowse() {
+
+            GetInfo('browse');
+
+        }
+
+        function AddBook() {
+
+            var box = bookDataID;
+            var pass = $('#checker').val();
+            if (pass == user.password) {
+
+                booksGo = [];
+                var win = true;
+                var currentBook = {
+                    name: bookDataName,
+                    id: bookDataID
+                };
+                var who = user.name;
+                var dateCheckedOut = "";
+                var dateDue = "";
+                var d = new Date();
+                var n = d.toDateString();
+                var due = new Date(+new Date + 12096e5).toDateString();
+                var bookwho = {
+                    id: currentBook.id,
+                    name: currentBook.name,
+                    dueDate: due
+                };
+
+                booksGo.push(bookwho);
+
+
+                $.post('/added', {
+
+                    id: currentBook.id,
+                    who: who,
+                    dueDate: due,
+                    checkedOut: booksGo,
+                    idz: user.id
+
+                }, function (data) {
+
+
+
+                });
+
+                $('#mainBox').html('<h2>Enjoy your reading, ' + user.name + '.<br>  Your book is due back on:<br>' + due + '</h2><button class = "btn btn-success btn-block" style="background-color: rgb(25, 18, 36);" onclick="BackToBrowse()">Back</button>');
+            }
+
+            else {
+
+                $('#mainBox').html('<h1 style="color: red">Incorrect password.</h1>><button class = "btn btn-success btn-block" style="background-color: rgb(25, 18, 36);" onclick="BackToBrowse()">Back</button>');
+
+            }
+
+        }
+
+
+        function updateBook() {
+
+            var who = user.name;
+            var dateCheckedOut = "";
+            var dateDue = "";
+            var d = new Date();
+            var n = d.toDateString();
+            var due = new Date(+new Date + 12096e5).toDateString()
+
+
+        }
+
+        function ComputerScienceDisplay(hi) {
+            menu = false;
+            $('#menuStuff').html('');
+
+            GetInfo(hi);
+
+        };
+
+        function ProgrammingDisplay(hi) {
+            menu = false;
+            $('#menuStuff').html('');
+            GetInfo(hi);
+
+        };
+
+        function DesignDisplay(hi) {
+            menu = false;
+            $('#menuStuff').html('');
+
+            GetInfo(hi);
+
+        };
+
+        function Login() {
+            menu = false;
+            $('#menuStuff').html('');
+
+            if (user.logged == 'in') {
+
+                $('#thanks').html('<h4 style="color: red">Login failed, please sign out first and try again.</h4>');
+
+            }
+            else {
+                $.get('/logged', function (data) {
+
+                    var name = $('#userName').val();
+                    var password = $('#userBio').val();
+                    var i = 0;
+
+
+                    for (i = 0; i < data.success.length; i++) {
+
+                        var dbname = data.success[i].name;
+                        var dbpassword = data.success[i].password;
+                        console.log(data.success[i]._id);
+                        console.log(dbpassword);
+
+
+
+
+                        if (dbname == name && dbpassword == password) {
+                            user = {
+                                name: data.success[i].name,
+                                logged: 'in',
+                                id: data.success[i]._id,
+                                password: dbpassword
+                            };
+
+                        }
+
+                    }
+
+                    if (user.name.toLowerCase() == name.toLowerCase()) {
+
+                        $('#userName').val('');
+                        $('#userBio').val('');
+                        loggedIn = "yes";
+                        var content = '<strong>Welcome to the Library</strong>';
+                        content += '<br/><h3 style="margin-bottom: 2px;">' + user.name + '</h3>';
+                        content += '<br /><img class="img-responsive" src="/images/logo.png"  style="background-color: rgba(255, 255, 255, .7);  margin-top: 15px; border-radius: 40px"><br><button  class="btn btn-danger mostButtons btn-block" onclick="logout()" style="background-color: rgb(25, 18, 36); border-color: white;">Log Out</button>'
+                        console.log('Logged in');
+                        $('#loggedInName').html(content);
+                        $('#thanks').html('<h4>You have successfully logged in.</h4>');
+
+
+
+                    }
+                    else {
+
+                        $('#thanks').html('<h4 style="color: red">Login failed, please try again.</h4>');
+                        //$('#loggedInName').html("Please log in.");
+
+                    }
+
+                });
+
+            }
+        }
+
+        function logout() {
+
+            console.log('Logout');
+            $('#loggedInName').html('Please login.<br><img class="img-responsive" src="/images/logo.png"  style="background-color: rgba(255, 255, 255, .7);  margin-top: 15px; border-radius: 40px"><br>');
+            $('#mainBox').html('<h1>Successfully logged out.</h1>');
+            user.logged = 'out'
+            user.name = ''
+            user.id = ''
+            console.log(user);
+
+
+        }
+
+        function MyAccountDisplay() {
+            menu = false;
+            $('#menuStuff').html('');
+
+            if (user.logged == 'in') {
+                $.post('/return', {
+                    person: user.id
+                }, function (data) {
+
+                    console.log(user.id);
+                    console.log(data.success.name);
+                    bookAgain = [];
+
+                    console.log(data.success.booksOut);
+
+                    for (var i = 0; i < data.success.booksOut.length; i++) {
+
+                        var owned = [];
+
+
+                        for (var j = 0; j < data.success.booksOut[i].length; j++) {
+
+                            var idthing = data.success.booksOut[i][j].id;
+                            console.log(data.success.booksOut[i][j].name);
+
+
+                            owned.push({
+                                name: data.success.booksOut[i][j].name,
+                                id: data.success.booksOut[i][j].id,
+                                dueDate: data.success.booksOut[i][j].dueDate
+                            })
+
+
+
+
+                        }
+                        bookAgain.push(owned);
+
+                    }
+
+
+
+                    MyAccount();
+
+
+                })
+            }
+            else {
+                $('#mainBox').html('<h1>Please Sign In or Create an Account.</h1>');
+            }
+
+
+
+        };
+
+        function MyAccount() {
+
+            var abname = "";
+            abname += '<div class="animated zoomIn"><h1>Books you have checked out: </h1><hr></div>';
+
+            for (var i = 0; i < bookAgain.length; i++) {
+
+                for (var j = 0; j < bookAgain[i].length; j++) {
+
+                    var idthing = bookAgain[i][j].id;
+
+                    abname += '<div class="animated zoomIn"><h3 class = "booksIn">' + bookAgain[i][j].name + "</h3>";
+                    abname += '<p>This book is due back by: </p><h3 style="color: red">' + bookAgain[i][j].dueDate + '</h3>';
+                    abname += '<div id="' + bookAgain[i][j].id + '"><button style="background-color: rgb(25, 18, 36);" class="btn btn-success" data-id="' + bookAgain[i][j].id + '" data-name="' + bookAgain[i][j].name + '" onclick="ReturnCheck(this)">Return This Book</button></div><hr></div>';
+
+                }
+
+            }
+
+            $("#mainBox").html(abname);
+
+        };
+
+        function BackToAccount() {
+
+            MyAccountDisplay();
+
+        }
+
+        function ReturnCheck(book) {
+
+            var box = book.getAttribute('data-id');
+
+            document.getElementById(box).innerHTML = '<h3>Please confirm your password to return this book.</h3><div class="row"><div class="col-md-1"><input style=" color: black; margin-top: 4px;" type="password" id="checker2" /></div><div class="col-md-9 col-md-offset-2"><button style="background-color: rgb(25, 18, 36);" type="button" class="btn btn-success btn-block" onclick="returnBook()">Submit</ button></div></div>';
+            bookDataName2 = book.getAttribute('data-name');
+            bookDataID2 = book.getAttribute('data-id');
+
+        }
+
+
+        function returnBook() {
+
+            var d2 = [];
+            var idz = bookDataID2;
+            var b = bookDataName2;
+            var d1 = [];
+            var pass = $('#checker2').val();
+            if (pass == user.password) {
+
+
+
+                for (var i = 0; i < bookAgain.length; i++) {
+
+                    var a = [];
+
+                    for (var j = 0; j < bookAgain[i].length; j++) {
+
+                        if (idz == bookAgain[i][j].id) {
+
+                        }
+                        else {
+
+                            a.push({
+                                name: bookAgain[i][j].name,
+                                id: bookAgain[i][j].id,
+                                dueDate: bookAgain[i][j].dueDate
+                            })
+
+
+                        }
+
+                    }
+
+                    d1.push(a);
+
+                }
+
+                $.post('/returned', {
+                    id: user.id,
+                    remaining: d1,
+                    idz: idz
+                }, function (data) {
+
+
+
+                });
+
+                bookAgain = d1;
+                $('#mainBox').html('<h2>' + b + ' has been successfully returned.</h2><button class = "btn btn-success btn-block" style="background-color: rgb(25, 18, 36);" onclick="BackToAccount()">Back</button>');
+
+
+                //redo(idz);
+            }
+            else {
+
+                $('#mainBox').html('<h2 style="color: red">Password Incorrect.</h2>><button class = "btn btn-success btn-block" style="background-color: rgb(25, 18, 36);" onclick="BackToBrowse()">Back</button>');
+
+            }
+        };
+
+        function redo(id) {
+
+
+            $.post('/deadded', {
+                id: id
+            }, function (data) {
+
+
+
+            });
+
+
+
+
+
+
+        }
+
+
+        function GetInfo(bk) {
+
+            menu = false;
+            $('#menuStuff').html('');
+
+            if (user.logged == 'in') {
+
+                availableBooks = [];
+
+                if (bk == 'browse' && user.name != '') {
+
+                    $.get('/batman', function (data) {
+
+                        for (var i = 0; i < data.success.length; i++) {
+
+                            var book = {
+                                id: data.success[i]._id,
+                                name: data.success[i].name,
+                                description: data.success[i].description,
+                                status: data.success[i].status,
+                                who: data.success[i].who,
+                                dueDate: data.success[i].dueDate
+
+                            };
+                            availableBooks.push(book);
+
+
+
+                        }
+
+
+                        BrowseDisplay();
+                    })
+                }
+                else if (bk == 'programming') {
+
+                    $.get('/batman', function (data) {
+
+
+                        for (var i = 0; i < data.success.length; i++) {
+
+                            var book = {
+                                id: data.success[i]._id,
+                                name: data.success[i].name,
+                                description: data.success[i].description,
+                                status: data.success[i].status,
+                                who: data.success[i].who,
+                                category: data.success[i].category,
+                                dueDate: data.success[i].dueDate
+                            };
+                            if (book.category == 'Programming') {
+                                availableBooks.push(book);
+                            }
+
+                        }
+
+                        BrowseDisplay();
+
+                    });
+
+
+                }
+                else if (bk == 'design') {
+
+                    $.get('/batman', function (data) {
+
+
+                        for (var i = 0; i < data.success.length; i++) {
+
+                            var book = {
+                                id: data.success[i]._id,
+                                name: data.success[i].name,
+                                description: data.success[i].description,
+                                status: data.success[i].status,
+                                who: data.success[i].who,
+                                category: data.success[i].category,
+                                dueDate: data.success[i].dueDate
+                            };
+                            if (book.category == 'Design') {
+                                availableBooks.push(book);
+                            }
+
+                        }
+
+                        BrowseDisplay();
+
+                    });
+
+
+                }
+                else if (bk == 'computerscience') {
+
+                    $.get('/batman', function (data) {
+
+
+                        for (var i = 0; i < data.success.length; i++) {
+
+                            var book = {
+                                id: data.success[i]._id,
+                                name: data.success[i].name,
+                                description: data.success[i].description,
+                                status: data.success[i].status,
+                                who: data.success[i].who,
+                                category: data.success[i].category,
+                                dueDate: data.success[i].dueDate
+                            };
+                            if (book.category == 'Computer Science') {
+                                availableBooks.push(book);
+                            }
+
+                        }
+
+                        BrowseDisplay();
+
+                    });
+
+
+
+                }
+
+            }
+            else {
+                $("#mainBox").html('<h1>Please Sign In or Create an Account.</h1>');
+            }
+
+
+        };
+
+
+        function PostInfo() {
+
+            var userNames = [];
+
+            if ($('#userName').val() != '' && $('#userBio').val() != '') {
+
+                $.get('/logged', function (data) {
+
+                    for (var i = 0; i < data.success.length; i++) {
+
+                        if (data.success[i].name != null) {
+
+                            userNames.push(data.success[i].name.toLowerCase());
+
+
+                        }
+
+                    }
+
+                    for (var i = 0; i < userNames.length; i++) {
+
+                        if ($('#userName').val().toLowerCase() == userNames[i]) {
+
+                            return $('#thanks').html('<h3 style="color:red">Username already exists</h3>');
+
+                        }
+                    }
+
+                    $.post('/register', {
+
+                        name: $("#userName").val(),
+                        password: $('#userBio').val()
+                    });
+
+                    $('#thanks').html('<h3>Account created, please log in to proceed.</h3>');
+                    $('#userName').val('');
+                    $('#userBio').val('');
+                });
+
+
+            }
+
+            else {
+
+                return $('#thanks').html('<h3 style="color:red">Please complete the required forms</h3>');
+
+            }
+        }
+    </script>
+
+
+</body>
+
+</html>

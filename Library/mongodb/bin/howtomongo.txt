@@ -1,0 +1,8 @@
+storage:
+	dbPath: "data"
+	directoryPerDB: true
+
+//1: Install MongoDB (folder)
+//2: mkdir data && mkdir db inside of data
+//3: Create mongod.config and write the above content to it
+//4: ./mongod --config mongod.config 
