@@ -1,2 +1,2 @@
 # CodeCraft-Library
-An advanced application built to keep track of all the books in a library.  Built using NodeJS and MongoDB for the CodeCraft School of Technology.
+This is a full stack library application designed to help keep track of all the books in a library, allowing users to check books in and out, and to see when the books they want will be available again. It is built using NodeJS, Bootstrap, MongoDB, and the MEAN stack.
