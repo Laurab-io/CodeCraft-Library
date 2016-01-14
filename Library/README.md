@@ -1,1 +1,1 @@
-Epic library app.  Needs better description.
+Epic library app. Group Project.
